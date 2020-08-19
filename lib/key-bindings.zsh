@@ -30,8 +30,6 @@ if [[ $? != 0 ]]; then
   omz_bindkey '\e3;5~' delete-char   # I don't know what this is, but it was here before -apjanke
 fi
 
-# [Ctrl-Backspace] - delete whole backward-word
-bindkey -M emacs '^H' backward-kill-word
 # [Ctrl-Delete] - delete whole forward-word
 bindkey -M emacs '^[[3;5~' kill-word
 bindkey -M viins '^[[3;5~' kill-word
