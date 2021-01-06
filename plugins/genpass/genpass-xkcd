@@ -43,7 +43,11 @@ fi
 
 # Figure out how many words we need for 128 bits of security margin.
 # Each word adds log2($#words) bits.
+<<<<<<< HEAD
 local -i n=$((ceil(128. / log2($#words))))
+=======
+local -i n=$((ceil(128. / (log($#words) / log(2)))))
+>>>>>>> upstream/master
 
 {
   local c
