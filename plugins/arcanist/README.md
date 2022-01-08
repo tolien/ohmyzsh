@@ -14,6 +14,7 @@ plugins=(... arcanist)
 | ------- | ---------------------------------- |
 | ara     | `arc amend`                        |
 | arb     | `arc branch`                       |
+| arbl    | `arc bland`                        |
 | arco    | `arc cover`                        |
 | arci    | `arc commit`                       |
 | ard     | `arc diff`                         |
@@ -23,6 +24,7 @@ plugins=(... arcanist)
 | ardpc   | `arc diff --plan-changes`          |
 | are     | `arc export`                       |
 | arh     | `arc help`                         |
+| arho    | `arc hotfix`                       |
 | arl     | `arc land`                         |
 | arli    | `arc lint`                         |
 | arls    | `arc list`                         |
