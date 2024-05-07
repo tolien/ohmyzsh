@@ -9,18 +9,31 @@ omz_bindkey -s '\el' 'ls\n'                           # [Esc-l] - run command: l
 omz_bindkey    '^r' history-incremental-search-backward  # [Ctrl-r] - Search backward incrementally for a specified string.
                                                       #    The string may begin with ^ to anchor the search to the beginning of the line.
 
-omz_bindkey -t kpp    up-line-or-history            # [PageUp] - Up a line of history
-omz_bindkey -t knp    down-line-or-history          # [PageDown] - Down a line of history
-omz_bindkey -t kcuu1  up-line-or-search             # start typing + [Up-Arrow] - fuzzy find history forward
-omz_bindkey -t kcud1  down-line-or-search           # start typing + [Down-Arrow] - fuzzy find history backward
-omz_bindkey -t khome  beginning-of-line             # [Home] - Go to beginning of line
-omz_bindkey -t kend   end-of-line                   # [End] - Go to end of line
-omz_bindkey -c ctrl right  forward-word             # [Ctrl-Right] - move forward one word
-omz_bindkey -c ctrl left   backward-word            # [Ctrl-Left] - move backward one word
+# Start typing + [Up-Arrow] - fuzzy find history forward
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
 
-omz_bindkey    ' '    magic-space                   # [Space] - do history expansion
+bindkey -M emacs "^[[A" up-line-or-beginning-search
+bindkey -M viins "^[[A" up-line-or-beginning-search
+bindkey -M vicmd "^[[A" up-line-or-beginning-search
+if [[ -n "${terminfo[kcuu1]}" ]]; then
+  bindkey -M emacs "${terminfo[kcuu1]}" up-line-or-beginning-search
+  bindkey -M viins "${terminfo[kcuu1]}" up-line-or-beginning-search
+  bindkey -M vicmd "${terminfo[kcuu1]}" up-line-or-beginning-search
+fi
 
-omz_bindkey -t kcbt   reverse-menu-complete         # [Shift-Tab] - move through the completion menu backwards
+# Start typing + [Down-Arrow] - fuzzy find history backward
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+bindkey -M emacs "^[[B" down-line-or-beginning-search
+bindkey -M viins "^[[B" down-line-or-beginning-search
+bindkey -M vicmd "^[[B" down-line-or-beginning-search
+if [[ -n "${terminfo[kcud1]}" ]]; then
+  bindkey -M emacs "${terminfo[kcud1]}" down-line-or-beginning-search
+  bindkey -M viins "${terminfo[kcud1]}" down-line-or-beginning-search
+  bindkey -M vicmd "${terminfo[kcud1]}" down-line-or-beginning-search
+fi
 
 omz_bindkey    '^?'   backward-delete-char          # [Backspace] - delete backward
 omz_bindkey -t kdch1  delete-char                   # [Delete] - delete forward
